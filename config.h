@@ -11,8 +11,8 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#ff0000";
-static const char blue[]        = "#0000ff";
+static const char col_cyan[]        = "#9370DB";
+static const char blue[]        = "#9370DB";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -60,10 +60,12 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "rofi", "-show", "drun", "-theme", "~/onedark.rasi", NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
+static const char *clipmenu[]  = { "/home/nobel/Suckless/clipmenu/clipmenu", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_v,      spawn,          {.v = clipmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
