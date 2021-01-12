@@ -61,7 +61,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
 static const char *clipmenu[]  = { "/home/nobel/Suckless/clipmenu/clipmenu", NULL };
-static const char *micmute[]  = { "amixer", "-c3", "set", "Mic", "toggle", NULL };
+static const char *micmute[]  = { "amixer", "set", "Capture", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
