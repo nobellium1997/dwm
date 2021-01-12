@@ -62,6 +62,9 @@ static const char *termcmd[]  = { "alacritty", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
 static const char *clipmenu[]  = { "/home/nobel/Suckless/clipmenu/clipmenu", NULL };
 static const char *micmute[]  = { "amixer", "set", "Capture", "toggle", NULL };
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -91,6 +94,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_s, spawn,         {.v = flameshot } },
+	{ MODKEY,                       XK_F2, spawn, {.v = downvol } },
+	{ MODKEY,                       XK_F1,  spawn, {.v = mutevol } },
+	{ MODKEY,                       XK_F3, spawn, {.v = upvol   } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
