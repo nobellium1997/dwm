@@ -66,7 +66,7 @@ static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%"
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *speakers[]  = { "pacmd", "set-default-sink", "alsa_output.pci-0000_0a_00.3.analog-stereo", NULL };
-static const char *headset[]  = { "pacmd", "set-default-sink", "alsa_output.usb-Logitech_G533_Gaming_Headset-00.analog-stereo", NULL };
+static const char *headset[]  = { "pacmd", "set-default-sink", "bluez_sink.38_F3_2E_C1_80_BD.a2dp_sink", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
