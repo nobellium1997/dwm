@@ -61,10 +61,12 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
 static const char *clipmenu[]  = { "/home/nobel/Suckless/clipmenu/clipmenu", NULL };
-static const char *micmute[]  = { "amixer", "set", "Capture", "toggle", NULL };
+static const char *micmute[]  = { "amixer", "set", "-c1", "Mic", "toggle", NULL };
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+static const char *speakers[]  = { "pacmd", "set-default-sink", "alsa_output.pci-0000_0a_00.3.analog-stereo", NULL };
+static const char *headset[]  = { "pacmd", "set-default-sink", "alsa_output.usb-Logitech_G533_Gaming_Headset-00.analog-stereo", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -97,6 +99,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F2, spawn, {.v = downvol } },
 	{ MODKEY,                       XK_F1,  spawn, {.v = mutevol } },
 	{ MODKEY,                       XK_F3, spawn, {.v = upvol   } },
+    { MODKEY|ShiftMask,             XK_o,      spawn,          {.v = speakers } },
+    { MODKEY|ShiftMask,             XK_h,      spawn,          {.v = headset } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -117,7 +121,7 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+    { ClkClientWin,         ControlMask,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
