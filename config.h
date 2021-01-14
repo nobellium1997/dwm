@@ -67,8 +67,6 @@ static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
 static const char *speakers[]  = { "pacmd", "set-default-sink", "alsa_output.pci-0000_0a_00.3.analog-stereo", NULL };
 static const char *headset[]  = { "pacmd", "set-default-sink", "bluez_sink.38_F3_2E_C1_80_BD.a2dp_sink", NULL };
-static const char *down[]  = { "xdotool", "key", "Down", NULL};
-static const char *up[]  = { "xdotool", "key", "Up", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -103,8 +101,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F3, spawn, {.v = upvol   } },
     { MODKEY|ShiftMask,             XK_o,      spawn,          {.v = speakers } },
     { MODKEY|ShiftMask,             XK_h,      spawn,          {.v = headset } },
-    { MODKEY|ShiftMask,             XK_j,      spawn,          {.v = down } },
-    { MODKEY|ShiftMask,             XK_k,      spawn,          {.v = up } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
