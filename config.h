@@ -67,11 +67,15 @@ static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
 static const char *speakers[]  = { "pacmd", "set-default-sink", "alsa_output.pci-0000_0a_00.3.analog-stereo", NULL };
 static const char *headset[]  = { "pacmd", "set-default-sink", "alsa_output.usb-Logitech_G533_Gaming_Headset-00.analog-stereo", NULL };
+static const char *vol_up[]  = { "/home/nobel/Scripts/muteapp.sh", "Firefox", NULL };
+static const char *vol_down[]  = { "/home/nobel/Scripts/muteapp.sh", "-u", "Firefox", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = micmute } },
+	{ NULL,                       XK_F1,      spawn,          {.v = micmute } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = vol_up } },
+	{ MODKEY|ShiftMask,                       XK_p,      spawn,          {.v = vol_down } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
