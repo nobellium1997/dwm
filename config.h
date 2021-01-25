@@ -13,7 +13,8 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#9370DB";
-static const char blue[]        = "#9370DB";
+//static const char blue[]        = "#9370DB";
+static const char blue[]        = "#D65D0E";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -69,16 +70,20 @@ static const char *speakers[]  = { "pacmd", "set-default-sink", "alsa_output.usb
 static const char *headset[]  = { "pacmd", "set-default-sink", "alsa_output.usb-Logitech_G533_Gaming_Headset-00.analog-stereo", NULL };
 static const char *vol_up[]  = { "/home/nobel/Scripts/muteapp.sh", "Firefox", NULL };
 static const char *vol_down[]  = { "/home/nobel/Scripts/muteapp.sh", "-u", "Firefox", NULL };
+static const char *pass[]  = { "/home/nobel/Scripts/getpass.sh", NULL };
+static const char *user[]  = { "/home/nobel/Scripts/getuser.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
 	{ NULL,                       XK_F1,      spawn,          {.v = micmute } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = vol_up } },
+	{ MODKEY,                       XK_b,      spawn,          {.v = pass } },
+	{ MODKEY|ShiftMask,                       XK_b,      spawn,          {.v = user } },
 	{ MODKEY|ShiftMask,                       XK_p,      spawn,          {.v = vol_down } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	// { MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
