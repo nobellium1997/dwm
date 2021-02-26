@@ -32,7 +32,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "libreoffice-impress",  NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "mpv",  NULL,       NULL,       NULL,       1,           -1 }
+	{ "vlc",  NULL,       NULL,       NULL,       1,           -1 }
 };
 
 /* layout(s) */
