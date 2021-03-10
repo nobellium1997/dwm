@@ -75,19 +75,21 @@ static const char *vol_up[]  = { "/home/nobel/Scripts/muteapp.sh", "Firefox", NU
 static const char *vol_down[]  = { "/home/nobel/Scripts/muteapp.sh", "-u", "Firefox", NULL };
 static const char *pass[]  = { "/home/nobel/Scripts/getpass.sh", NULL };
 static const char *user[]  = { "/home/nobel/Scripts/getuser.sh", NULL };
+static const char *chrome_dmenu[]  = { "/home/nobel/Suckless/chrome-dmenu/chrome-dmenu.sh", NULL };
+static const char *chrome_dmenu_hist[]  = { "/home/nobel/Suckless/chrome-dmenu/chrome-dmenu.sh", "--history", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
-	{ NULL,                       XK_F1,      spawn,          {.v = micmute } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = vol_up } },
+	{ NULL,                         XK_F1,      spawn,          {.v = micmute } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = chrome_dmenu_hist } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = pass } },
-	{ MODKEY|ShiftMask,                       XK_b,      spawn,          {.v = user } },
-	{ MODKEY|ShiftMask,                       XK_p,      spawn,          {.v = vol_down } },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = user } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = chrome_dmenu } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
-    { MODKEY,           XK_w,  focusmaster,    {0} },
+    { MODKEY,                       XK_w,  focusmaster,    {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
