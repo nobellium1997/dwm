@@ -23,6 +23,18 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, blue,  col_cyan  },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
+const char *spcmd1[] = {"brave-browser", "--app=https://music.youtube.com", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"bravesp",   spcmd1},
+	{"spranger",    spcmd2},
+};
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -32,8 +44,11 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "vlc",  NULL,       NULL,       NULL,       1,        -1,          0,           1,        -1},
-	{ "st-256color",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "vlc",     NULL,       NULL,       NULL,       1,        -1,          0,           1,        -1},
+	{ "mpv",     NULL,       NULL,       NULL,       1,        -1,          0,           1,        -1},
+	{ "st-256color",   NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "Brave-browser",		  "music.youtube.com",	NULL,		SPTAG(0),		1,			 0,           1,        -1 },
+	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 0, 1, -1 },
 };
 
 /* layout(s) */
@@ -86,6 +101,8 @@ static Key keys[] = {
 	{ NULL,                         XK_F1,      spawn,          {.v = micmute } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = chrome_dmenu_hist } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = pass } },
+	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
+	{ MODKEY,            			XK_x,  	   togglescratch,  {.ui = 1 } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = user } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = chrome_dmenu } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipmenu } },
