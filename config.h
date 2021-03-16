@@ -27,12 +27,16 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
 const char *spcmd1[] = {"brave-browser", "--app=https://music.youtube.com", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
+const char *spcmd3[] = {"kdeconnect-sms", NULL };
+const char *spcmd4[] = {"pavucontrol", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
-	{"bravesp",   spcmd1},
+	{"bravesp_yt",   spcmd1},
 	{"spranger",    spcmd2},
+	{"kdeconnect",   spcmd3},
+	{"paudio",   spcmd4},
 };
 
 /* tagging */
@@ -47,8 +51,10 @@ static const Rule rules[] = {
 	{ "vlc",     NULL,       NULL,       NULL,       1,        -1,          0,           1,        -1},
 	{ "mpv",     NULL,       NULL,       NULL,       1,        -1,          0,           1,        -1},
 	{ "st-256color",   NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "Brave-browser",		  "music.youtube.com",	NULL,		SPTAG(0),		1,			 0,           1,        -1 },
+	{ "Brave-browser",  "music.youtube.com",    NULL,		SPTAG(0),		1,			 0,           1,        -1 },
 	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 0, 1, -1 },
+	{ "kdeconnect.sms", NULL,   NULL,		SPTAG(2),		1,			 0,           1,        -1 },
+	{ "Pavucontrol", NULL,   NULL,		SPTAG(3),		1,			 0,           1,        -1 },
 };
 
 /* layout(s) */
@@ -63,6 +69,7 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
+	{ "DD",       doubledeck },
 };
 
 /* key definitions */
@@ -92,19 +99,18 @@ static const char *vol_up[]  = { "/home/nobel/Scripts/muteapp.sh", "Firefox", NU
 static const char *vol_down[]  = { "/home/nobel/Scripts/muteapp.sh", "-u", "Firefox", NULL };
 static const char *pass[]  = { "/home/nobel/Scripts/getpass.sh", NULL };
 static const char *user[]  = { "/home/nobel/Scripts/getuser.sh", NULL };
-static const char *chrome_dmenu[]  = { "/home/nobel/Suckless/chrome-dmenu/chrome-dmenu.sh", NULL };
-static const char *chrome_dmenu_hist[]  = { "/home/nobel/Suckless/chrome-dmenu/chrome-dmenu.sh", "--history", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
 	{ NULL,                         XK_F1,      spawn,          {.v = micmute } },
-	{ MODKEY,                       XK_p,      spawn,          {.v = chrome_dmenu_hist } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = pass } },
+    { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[5]} },
+	{ MODKEY,            			XK_p,  	   togglescratch,  {.ui = 2 } },
+	{ MODKEY|ShiftMask,            	XK_p,  	   togglescratch,  {.ui = 3 } },
 	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_x,  	   togglescratch,  {.ui = 1 } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = user } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = chrome_dmenu } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
