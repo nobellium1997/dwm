@@ -62,14 +62,15 @@ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
+#include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
 	{ "DD",       doubledeck },
+ 	{ "[@]",      spiral },
+ 	{ "[\\]",      dwindle },
 };
 
 /* key definitions */
@@ -106,7 +107,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
 	{ NULL,                         XK_F1,      spawn,          {.v = micmute } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = pass } },
-    { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[5]} },
+    { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY,            			XK_p,  	   togglescratch,  {.ui = 2 } },
 	{ MODKEY|ShiftMask,            	XK_p,  	   togglescratch,  {.ui = 3 } },
 	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
@@ -144,8 +145,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F3, spawn, {.v = upvol   } },
     { MODKEY|ShiftMask,             XK_o,      spawn,          {.v = speakers } },
     { MODKEY|ShiftMask,             XK_h,      spawn,          {.v = headset } },
-	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[5]} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
