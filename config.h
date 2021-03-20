@@ -5,7 +5,7 @@ static const int swallowfloating    = 0;        /* 1 means swallow floating wind
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int gappx            = 12;        /* 0 means no bar */
+static const int gappx            = 0;        
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
@@ -28,7 +28,7 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = {"brave-browser", "--app=https://music.youtube.com", NULL };
-const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", NULL };
 const char *spcmd3[] = {"kdeconnect-sms", NULL };
 const char *spcmd4[] = {"pavucontrol", NULL };
 static Sp scratchpads[] = {
@@ -86,7 +86,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "rofi", "-show", "run", "-theme", "/home/nobel/onedark.rasi", NULL };
+static const char *roficmd[] = { "rofi", "-show", "window", "-theme", "/home/nobel/onedark.rasi", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
 static const char *clipmenu[]  = { "/home/nobel/Suckless/clipmenu/clipmenu", "-i", NULL };
@@ -102,6 +103,7 @@ static const char *pass[]  = { "/home/nobel/Scripts/getpass.sh", NULL };
 static const char *user[]  = { "/home/nobel/Scripts/getuser.sh", NULL };
 
 #include "movestack.c"
+#include "focusurgent.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
@@ -119,6 +121,9 @@ static Key keys[] = {
     { MODKEY,                       XK_w,  focusmaster,    {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_s,      swapfocus,     {} },
+    { MODKEY|ShiftMask,             XK_u,      spawn,          {.v = roficmd } },
+    { MODKEY|ShiftMask,             XK_u,      focusurgent,    {0} },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
