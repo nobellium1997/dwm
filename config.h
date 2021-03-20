@@ -69,7 +69,7 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ "DD",       doubledeck },
- 	{ "[@]",      spiral },
+	{ "TTT",      bstack },
  	{ "[\\]",      dwindle },
 };
 
