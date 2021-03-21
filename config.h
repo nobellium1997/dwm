@@ -30,7 +30,7 @@ typedef struct {
 const char *spcmd1[] = {"brave-browser", "--app=https://music.youtube.com", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", NULL };
 const char *spcmd3[] = {"kdeconnect-sms", NULL };
-const char *spcmd4[] = {"pavucontrol", NULL };
+const char *spcmd4[] = {"pavucontrol-qt", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"bravesp_yt",   spcmd1},
@@ -54,7 +54,7 @@ static const Rule rules[] = {
 	{ "Brave-browser",  "music.youtube.com",    NULL,		SPTAG(0),		1,			 0,           1,        -1 },
 	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 0, 1, -1 },
 	{ "kdeconnect.sms", NULL,   NULL,		SPTAG(2),		1,			 0,           1,        -1 },
-	{ "Pavucontrol", NULL,   NULL,		SPTAG(3),		1,			 0,           1,        -1 },
+	{ "pavucontrol-qt", NULL,   NULL,		SPTAG(3),		1,			 0,           1,        -1 },
 };
 
 /* layout(s) */
@@ -68,9 +68,9 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "DD",       doubledeck },
+	{ "[D]",      deck },
 	{ "TTT",      bstack },
- 	{ "[\\]",      dwindle },
+ 	{ "[\\]",     dwindle },
 };
 
 /* key definitions */
