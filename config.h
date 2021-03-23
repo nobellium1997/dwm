@@ -27,7 +27,7 @@ typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-const char *spcmd1[] = {"brave-browser", "--app=https://music.youtube.com", NULL };
+const char *spcmd1[] = {"brave-browser", "https://music.youtube.com", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", NULL };
 const char *spcmd3[] = {"kdeconnect-sms", NULL };
 const char *spcmd4[] = {"pavucontrol-qt", NULL };
@@ -51,7 +51,7 @@ static const Rule rules[] = {
 	{ "vlc",     NULL,       NULL,       NULL,       1,        -1,          0,           1,        -1},
 	{ "mpv",     NULL,       NULL,       NULL,       1,        -1,          0,           1,        -1},
 	{ "st-256color",   NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ "Brave-browser",  "music.youtube.com",    NULL,		SPTAG(0),		1,			 0,           1,        -1 },
+	{ "Brave-browser",  NULL,    NULL,		SPTAG(0),		1,			 0,           1,        -1 },
 	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 0, 1, -1 },
 	{ "kdeconnect.sms", NULL,   NULL,		SPTAG(2),		1,			 0,           1,        -1 },
 	{ "pavucontrol-qt", NULL,   NULL,		SPTAG(3),		1,			 0,           1,        -1 },
