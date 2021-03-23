@@ -29,14 +29,12 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {"brave-browser", "https://music.youtube.com", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", NULL };
-const char *spcmd3[] = {"kdeconnect-sms", NULL };
-const char *spcmd4[] = {"pavucontrol-qt", NULL };
+const char *spcmd3[] = {"pavucontrol-qt", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"bravesp_yt",   spcmd1},
 	{"spranger",    spcmd2},
-	{"kdeconnect",   spcmd3},
-	{"paudio",   spcmd4},
+	{"paudio",   spcmd3},
 };
 
 /* tagging */
@@ -110,8 +108,7 @@ static Key keys[] = {
 	{ NULL,                         XK_F1,      spawn,          {.v = micmute } },
 	{ MODKEY,                       XK_b,      spawn,          {.v = pass } },
     { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,            			XK_p,  	   togglescratch,  {.ui = 2 } },
-	{ MODKEY|ShiftMask,            	XK_p,  	   togglescratch,  {.ui = 3 } },
+	{ MODKEY|ShiftMask,            	XK_p,  	   togglescratch,  {.ui = 2 } },
 	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_x,  	   togglescratch,  {.ui = 1 } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = user } },
