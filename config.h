@@ -30,11 +30,13 @@ typedef struct {
 const char *spcmd1[] = {"brave-browser", "https://music.youtube.com", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", NULL };
 const char *spcmd3[] = {"pavucontrol-qt", NULL };
+const char *spcmd4[] = {"discord", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"bravesp_yt",   spcmd1},
 	{"spranger",    spcmd2},
 	{"paudio",   spcmd3},
+	{"discord",   spcmd4},
 };
 
 /* tagging */
@@ -51,8 +53,8 @@ static const Rule rules[] = {
 	{ "st-256color",   NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Brave-browser",  NULL,    NULL,		SPTAG(0),		1,			 0,           1,        -1 },
 	{ NULL,		  "spfm",		NULL,		SPTAG(1),		1,			 0, 1, -1 },
-	{ "kdeconnect.sms", NULL,   NULL,		SPTAG(2),		1,			 0,           1,        -1 },
-	{ "pavucontrol-qt", NULL,   NULL,		SPTAG(3),		1,			 0,           1,        -1 },
+	{ "pavucontrol-qt", NULL,   NULL,		SPTAG(2),		1,			 0,           1,        -1 },
+	{ "discord", NULL,   NULL,		SPTAG(3),		1,			 0,           1,        -1 },
 };
 
 /* layout(s) */
@@ -84,8 +86,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "rofi", "-show", "run", "-theme", "/home/nobel/onedark.rasi", NULL };
-static const char *roficmd[] = { "rofi", "-show", "window", "-theme", "/home/nobel/onedark.rasi", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, "-c", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *flameshot[]  = { "flameshot", "gui", NULL };
 static const char *clipmenu[]  = { "/home/nobel/Suckless/clipmenu/clipmenu", "-i", NULL };
@@ -97,8 +98,6 @@ static const char *speakers[]  = { "pacmd", "set-default-sink", "alsa_output.usb
 static const char *headset[]  = { "pacmd", "set-default-sink", "alsa_output.usb-Logitech_G533_Gaming_Headset-00.analog-stereo", NULL };
 static const char *vol_up[]  = { "/home/nobel/Scripts/muteapp.sh", "Firefox", NULL };
 static const char *vol_down[]  = { "/home/nobel/Scripts/muteapp.sh", "-u", "Firefox", NULL };
-static const char *pass[]  = { "/home/nobel/Scripts/getpass.sh", NULL };
-static const char *user[]  = { "/home/nobel/Scripts/getuser.sh", NULL };
 
 #include "movestack.c"
 #include "focusurgent.c"
@@ -106,12 +105,11 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_a,      spawn,          {.v = dmenucmd } },
 	{ NULL,                         XK_F1,      spawn,          {.v = micmute } },
-	{ MODKEY,                       XK_b,      spawn,          {.v = pass } },
     { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,            	XK_p,  	   togglescratch,  {.ui = 2 } },
+	{ MODKEY,            	        XK_p,  	   togglescratch,  {.ui = 3 } },
 	{ MODKEY,            			XK_y,  	   togglescratch,  {.ui = 0 } },
 	{ MODKEY,            			XK_x,  	   togglescratch,  {.ui = 1 } },
-	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = user } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = clipmenu } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	// { MODKEY,                       XK_b,      togglebar,      {0} },
@@ -119,7 +117,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_s,      swapfocus,     {} },
-    { MODKEY|ShiftMask,             XK_u,      spawn,          {.v = roficmd } },
     { MODKEY|ShiftMask,             XK_u,      focusurgent,    {0} },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
